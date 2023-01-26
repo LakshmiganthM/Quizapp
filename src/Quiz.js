@@ -19,8 +19,9 @@ const Quiz = () => {
     }
   }
   if (question === 9 && time <= 0) {
-    setshowscore(true)
+    setshowscore(false)
     setTimeleft(false)
+    setquestion(9)
   }
   if (time <= 0) {
     setquestion(question + 1)
@@ -84,19 +85,18 @@ const Quiz = () => {
     setquestion(9)
   }
   const review = () => {
-    if (question === 9 && time <= 0) {
-      const nextquestion = question - 1
-      if (nextquestion < quiz.length) {
-        setquestion(question - 1)
-      }
-      if (nextquestion < 0) {
-        setquestion(0)
-      }
+    const nextquestion = question - 1
+    if (nextquestion < quiz.length) {
+      setquestion(question - 1)
+    }
+
+    if (nextquestion < 0) {
+      setquestion(0)
     }
   }
   const submit = (e) => {
     e.preventDefault()
-    if (question === 9 && time <= 0) {
+    if (question === 9) {
       setshowscore(true)
 
       setTimeleft(false)
@@ -191,7 +191,7 @@ const Quiz = () => {
             <button onClick={prev} disabled={!enable}>
               Prev
             </button>
-            <button onClick={next} disabled={!enable}>
+            <button onClick={next} disabled={!enable || question >= 9}>
               Next
             </button>
             <button onClick={last} disabled={!enable}>

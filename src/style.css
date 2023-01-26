@@ -46,6 +46,8 @@
 }
 .quiz-li:hover {
   box-shadow: 0px 10 40px #ffff;
+  background-color: #000;
+  color: white;
 }
 .quiz-button {
   display: flex;
